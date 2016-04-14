@@ -1,6 +1,5 @@
 package com.studytrack.app.studytrack_v1.UniversitySearch;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -33,6 +32,9 @@ import Entities.University;
 import Requests.FilterRequest;
 import Requests.Filters.Filter;
 import Requests.GetFavoriteRequest;
+import Requests.GetRegionsRequest;
+import Requests.GetTownsRequest;
+import Requests.GetUniversitiesRequest;
 import Requests.Request;
 
 /**
@@ -82,7 +84,6 @@ public class SearchFragment extends myFragment {
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initActivity();
         initProgress();
         initToolbar();
         initSheetFab();
@@ -93,17 +94,13 @@ public class SearchFragment extends myFragment {
         }
         loading = false;
         curOffset = 0; // TODO: 23.03.2016 Write it normal
-        new LoadDataTask(filter, 5, 0).execute();
+        new LoadDataTask(true, getTown(), 5, 0).execute();
 
-    }
-
-    private void initActivity() {
-        activity = (AppCompatActivity) getActivity();
     }
 
     private void initToolbar() {
-        toolbar = (Toolbar) activity.findViewById(R.id.main_toolbar);
-        actionbar = activity.getSupportActionBar();
+        toolbar = (Toolbar) getActivity().findViewById(R.id.main_toolbar);
+        actionbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         actionbar.setTitle("Университеты");
 

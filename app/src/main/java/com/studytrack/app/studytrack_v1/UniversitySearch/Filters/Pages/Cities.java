@@ -44,6 +44,7 @@ public class Cities extends FilterPageFragment {
         pref = getActivity().getPreferences(Context.MODE_PRIVATE);
 
         chosenCities = (HashSet<String>) pref.getStringSet("cities_filter", new HashSet<String>());
+        ((ResultListAdapter) citiesList.getAdapter()).setData(chosenCities);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
