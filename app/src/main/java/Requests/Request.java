@@ -16,6 +16,7 @@ import Services.LocalDataBaseManager.LocalDataBaseDriver;
 public abstract class Request<T extends Entity> extends AsyncTask<Void,Void,List<T>> {
     LocalDataBaseDriver localDb;
     DataBaseDriver db;
+    //
 
     public Request(AppCompatActivity activity) {
         this.localDb = new LocalDataBaseDriver(activity);
