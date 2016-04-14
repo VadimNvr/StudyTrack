@@ -3,6 +3,7 @@ package com.studytrack.app.studytrack_v1.UniversitySearch.Filters.Adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.studytrack.app.studytrack_v1.FilterPageFragment;
 import com.studytrack.app.studytrack_v1.UniversitySearch.Filters.Pages.Cities;
@@ -13,7 +14,7 @@ import com.studytrack.app.studytrack_v1.UniversitySearch.Filters.Pages.Studies;
 /**
  * Created by vadim on 10.01.16.
  */
-public class MainPagerAdapter extends FragmentPagerAdapter {
+public class MainPagerAdapter extends FragmentStatePagerAdapter {
     private final int PAGES_COUNT = 4;
     protected FilterPageFragment pages[];
 

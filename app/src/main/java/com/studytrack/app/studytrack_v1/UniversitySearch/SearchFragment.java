@@ -40,7 +40,6 @@ import Requests.Request;
  * Created by vadim on 03.01.16.
  */
 public class SearchFragment extends myFragment {
-    protected AppCompatActivity activity;
     protected View fragment;
     protected myFragment cur_frag;
     protected Toolbar toolbar;
@@ -81,7 +80,6 @@ public class SearchFragment extends myFragment {
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initActivity();
         initProgress();
         initToolbar();
         initSheetFab();
@@ -93,13 +91,9 @@ public class SearchFragment extends myFragment {
 
     }
 
-    private void initActivity() {
-        activity = (AppCompatActivity) getActivity();
-    }
-
     private void initToolbar() {
-        toolbar = (Toolbar) activity.findViewById(R.id.main_toolbar);
-        actionbar = activity.getSupportActionBar();
+        toolbar = (Toolbar) getActivity().findViewById(R.id.main_toolbar);
+        actionbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         actionbar.setTitle("Университеты");
 
@@ -137,7 +131,7 @@ public class SearchFragment extends myFragment {
 
     private void initRecycler() {
         university_recycler = (RecyclerView) fragment.findViewById(R.id.university_list);
-        university_recycler.setLayoutManager(new LinearLayoutManager(activity));
+        university_recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         university_recycler.addOnScrollListener(new HidingScrollListener() {
             @Override
@@ -182,12 +176,12 @@ public class SearchFragment extends myFragment {
     }
 
     private void initProgress() {
-        progress = (ProgressView) activity.findViewById(R.id.progress);
+        progress = (ProgressView) getActivity().findViewById(R.id.progress);
     }
 
     // TODO: 22.03.2016 remove
     private Town getTown() {
-        GetRegionsRequest regionsRequest = new GetRegionsRequest(activity);
+        GetRegionsRequest regionsRequest = new GetRegionsRequest((AppCompatActivity) getActivity());
         regionsRequest.execute();
         List<Region> regions = null;
         try {
@@ -196,7 +190,7 @@ public class SearchFragment extends myFragment {
             e.printStackTrace();
         }
 
-        GetTownsRequest townsRequest = new GetTownsRequest(activity, regions.get(0));
+        GetTownsRequest townsRequest = new GetTownsRequest((AppCompatActivity) getActivity(), regions.get(0));
         townsRequest.execute();
         List<Town> towns = null;
         try {
@@ -233,9 +227,8 @@ public class SearchFragment extends myFragment {
         switch (item.getItemId()) {
             case R.id.action_filter:
                 cur_frag = new FilterFragment();
-                activity.getSupportFragmentManager()
+                getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .addToBackStack(null)
                         .replace(R.id.main_fragment, cur_frag)
                         .commit();
                 return true;
@@ -266,9 +259,9 @@ public class SearchFragment extends myFragment {
             super.onPreExecute();
             progress.start();
             if(!isFavorite) {
-                this.request = new GetUniversitiesRequest(activity, town, offset, count);
+                this.request = new GetUniversitiesRequest((AppCompatActivity) getActivity(), town, offset, count);
             } else {
-                this.request = new GetFavoriteRequest(activity);
+                this.request = new GetFavoriteRequest((AppCompatActivity) getActivity());
             }
             this.request.execute();
             recyclerAdapter = (RecyclerAdapter) university_recycler.getAdapter();
@@ -305,7 +298,7 @@ public class SearchFragment extends myFragment {
                         University university = listItems.get(itemPosition - 1);
 
                         putData(cur_frag, university);
-                        activity.getSupportFragmentManager()
+                        getActivity().getSupportFragmentManager()
                                 .beginTransaction()
                                         //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                                 .addToBackStack(null)
@@ -314,7 +307,7 @@ public class SearchFragment extends myFragment {
                     }
                 };
 
-                recyclerAdapter = new RecyclerAdapter(activity, listItems, ocl);
+                recyclerAdapter = new RecyclerAdapter(getActivity(), listItems, ocl);
                 university_recycler.setAdapter(recyclerAdapter);
             }
             else {

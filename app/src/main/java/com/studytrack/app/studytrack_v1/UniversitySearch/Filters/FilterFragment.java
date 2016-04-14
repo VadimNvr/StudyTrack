@@ -67,7 +67,7 @@ public class FilterFragment extends myFragment {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 ((MainPagerAdapter) pager.getAdapter()).initAccept();
-                getActivity().getSupportFragmentManager().popBackStack();
+                getActivity().onBackPressed();
                 return true;
             }
         });
@@ -75,11 +75,6 @@ public class FilterFragment extends myFragment {
 
     @Override
     public boolean onBackPressed() {
-        //if (searchView.isSearchOpen()) {
-        //    searchView.closeSearch();
-        //    return true;
-        //}
-        //else
-            return false;
+        return false;
     }
 }
