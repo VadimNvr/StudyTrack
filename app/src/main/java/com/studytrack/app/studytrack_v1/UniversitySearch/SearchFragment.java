@@ -82,6 +82,7 @@ public class SearchFragment extends myFragment {
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initActivity();
         initProgress();
         initToolbar();
         initSheetFab();
@@ -94,6 +95,10 @@ public class SearchFragment extends myFragment {
         curOffset = 0; // TODO: 23.03.2016 Write it normal
         new LoadDataTask(filter, 5, 0).execute();
 
+    }
+
+    private void initActivity() {
+        activity = (AppCompatActivity) getActivity();
     }
 
     private void initToolbar() {
