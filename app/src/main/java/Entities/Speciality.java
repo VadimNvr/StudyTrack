@@ -61,6 +61,7 @@ public class Speciality implements  Entity {
         Cursor cursor = db.rawQuery("Select id from SpecialityType where name = ?",new String[]{name});
         cursor.moveToFirst();
         nameID = cursor.getString(0);
+        cursor.close();
         cursor = db.rawQuery("Select * from Speciality Where university_id = ? and type_id = ?",
                 new String[]{Integer.toString(university.getId()),nameID});
         if (cursor.moveToFirst()) {
@@ -72,7 +73,7 @@ public class Speciality implements  Entity {
             values.put("price", price);
             values.put("points", points);
             values.put("subjects", subjects);
-
+            cursor.close();
             db.insert("Speciality", null, values);
             cursor = db.rawQuery("Select * from Speciality Where university_id = ? and type_id = ?",
                     new String[]{Integer.toString(university.getId()),nameID});
@@ -80,6 +81,7 @@ public class Speciality implements  Entity {
                 this.id = cursor.getInt(0);
             }
         }
+        cursor.close();
     }
 
     public String getName() {

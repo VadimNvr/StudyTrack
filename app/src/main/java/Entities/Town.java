@@ -61,11 +61,13 @@ public class Town implements Entity {
             values.put("count", count);
             values.put("region_id", region.getId());
             db.insert("town", null, values);
+            cursor.close();
             cursor = db.rawQuery("Select * from Town Where name =?", new String[]{name});
             if (cursor.moveToFirst()) {
                 this.id = cursor.getInt(0);
             }
         }
+        cursor.close();
     }
 
     @Override

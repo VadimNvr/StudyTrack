@@ -26,11 +26,13 @@ public class SpecialityType implements Entity {
             ContentValues values = new ContentValues();
             values.put("name", name);
             db.insert("SpecialityType", null, values);
+            cursor.close();
             cursor = db.rawQuery("Select * from SpecialityType Where name =?", new String[]{name});
             if (cursor.moveToFirst()) {
                 this.id = cursor.getInt(0);
             }
         }
+        cursor.close();
     }
 
     public static SpecialityType initFromCursor(Cursor cursor) {

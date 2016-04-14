@@ -40,6 +40,7 @@ public class LocalDataBaseDriver {
         while (cursor.moveToNext()) {
             universities.add(University.initFromCursor(cursor,town));
         }
+        cursor.close();
         return universities;
     }
 
@@ -53,6 +54,7 @@ public class LocalDataBaseDriver {
             Town town = Town.getByID(db, cursor.getInt(2));
             universities.add(University.initFromCursor(cursor,town));
         }
+        cursor.close();
         return universities;
     }
 
@@ -62,6 +64,7 @@ public class LocalDataBaseDriver {
         while (cursor.moveToNext()) {
             universities.add(University.initFromCursor(cursor, Town.getByID(db, cursor.getInt(2))));
         }
+        cursor.close();
         return universities;
 
     }
@@ -75,6 +78,7 @@ public class LocalDataBaseDriver {
         while (cursor.moveToNext()) {
             specialities.add(Speciality.initFromCursor(cursor, university, db));
         }
+        cursor.close();
         return specialities;
     }
 
@@ -98,6 +102,7 @@ public class LocalDataBaseDriver {
         while (cursor.moveToNext()) {
             region.add(Region.initFromCursor(cursor));
         }
+        cursor.close();
         return region;
     }
 
@@ -119,6 +124,7 @@ public class LocalDataBaseDriver {
         while (cursor.moveToNext()) {
             specialities.add(SpecialityType.initFromCursor(cursor));
         }
+        cursor.close();
         return specialities;
     }
 

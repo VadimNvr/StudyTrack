@@ -35,15 +35,18 @@ public class Region implements Entity {
         Cursor cursor = db.rawQuery("Select * from Region Where name = ?", new String[]{name});
         if (cursor.moveToFirst()) {
             this.id = cursor.getInt(0);
+
         } else {
             ContentValues values = new ContentValues();
             values.put("name", name);
             db.insert("region", null, values);
+            cursor.close();
             cursor = db.rawQuery("Select * from Region Where name =?", new String[]{name});
             if (cursor.moveToFirst()) {
                 this.id = cursor.getInt(0);
             }
         }
+        cursor.close();
     }
 
     public static Region initFromCursor(Cursor cursor) {

@@ -115,12 +115,14 @@ public class University implements Entity {
             values.put("logo_path", logoPath);
             values.put("image_path", imagePath);
             db.insert("University", null, values);
+            cursor.close();
             cursor = db.rawQuery("Select * from Town Where name =?", new String[]{name});
             if (cursor.moveToFirst()) {
                 this.id = cursor.getInt(0);
             }
 
         }
+        cursor.close();
     }
 
     /**
