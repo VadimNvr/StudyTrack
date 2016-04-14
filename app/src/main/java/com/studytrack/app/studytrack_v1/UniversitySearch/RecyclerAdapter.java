@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.squareup.picasso.Picasso;
 import com.studytrack.app.studytrack_v1.R;
 
-import java.io.File;
 import java.util.List;
 
 import Entities.University;
@@ -53,14 +52,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             holder.name.setText(uni.getName());
             holder.location.setText(uni.getTown().getName());
             holder.average_mark.setText(uni.getViewableMark());
-            File image = new File(uni.getLogoPath());
-            // TODO: 15.03.2016 переделать на норм лого если нет лого
-            if(image.exists()) {
-                Picasso.with(context).load(image).resize(150, 150).into(holder.logo);
-            }
-            else {
-                Picasso.with(context).load(R.drawable.mgimo_logo).resize(150, 150).into(holder.logo);
-            }
+            Picasso.with(context).load(uni.getLogoPath()).fit().into(holder.logo);
             holder.cost.setText(uni.getViewableMeanPrice());
         }
     }

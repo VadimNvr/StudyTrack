@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import Requests.SpecialityRequest;
-import Services.ImageService;
 
 /**
  * Created by yudzh_000 on 17.03.2016.
@@ -91,17 +90,7 @@ public class University implements Entity {
         if (cursor.moveToFirst()) {
             this.id = cursor.getInt(0);
         } else {
-            try {
-                this.logoPath = ImageService.saveToFileFromUrl(activity.getApplicationContext(), this.logoPath);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
-            try {
-                this.imagePath = ImageService.saveToFileFromUrl(activity.getApplicationContext(), this.imagePath);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             ContentValues values = new ContentValues();
             values.put("name", name);
             values.put("address", address);

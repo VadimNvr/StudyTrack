@@ -1,6 +1,5 @@
 package Requests;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
@@ -16,7 +15,11 @@ public class GetTownsWithSpecial extends Request<Town> {
 
     public GetTownsWithSpecial(AppCompatActivity ctx, String characters) {
         super(ctx);
-        this.characters = characters;
+        if(characters.length() > 1) {
+            this.characters = characters.substring(0, 1).toUpperCase() + characters.substring(1);
+        } else {
+            this.characters = characters.toUpperCase();
+        }
     }
 
     @Override

@@ -105,12 +105,20 @@ public class LocalDataBaseDriver {
         cursor.close();
         return region;
     }
-
+    public Town getTownByName(String name) {
+        Cursor cursor = db.rawQuery("SELECT * FROM Town WHERE name LIKE ?;", new String[]{name});
+        cursor.moveToFirst();
+        Town town = Town.initFromCursor(cursor, null);
+        cursor.close();
+        return town;
+    }
     public List<Town> loadTownsWithSpecifickName(String characters) {
         ArrayList<Town> towns = new ArrayList<>();
-        Cursor cursor = db.rawQuery("SELECT * FROM Town WHERE name LIKE ?;", new String[]{characters+'%'});
-        while (cursor.moveToNext()) {
+        Cursor cursor = db.rawQuery("SELECT * FROM Town WHERE LOWER(name) LIKE LOWER(?);", new String[]{characters + '%'});
+        int i =0;
+        while (cursor.moveToNext() && i < 4) {
             towns.add(Town.initFromCursor(cursor, null));
+            i++;
         }
         cursor.close();
         return towns;

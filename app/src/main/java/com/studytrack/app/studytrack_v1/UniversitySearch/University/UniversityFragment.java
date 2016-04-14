@@ -20,7 +20,6 @@ import com.studytrack.app.studytrack_v1.R;
 import com.studytrack.app.studytrack_v1.Utils.Animator;
 import com.studytrack.app.studytrack_v1.myFragment;
 
-import java.io.File;
 import java.util.concurrent.ExecutionException;
 
 import Entities.University;
@@ -207,8 +206,8 @@ public class UniversityFragment extends myFragment
 
             recycler.setLayoutManager(new LinearLayoutManager(activity));
             recycler.setAdapter(new RecyclerAdapter(university,activity));
-            Picasso.with(activity).load(new File(university.getImagePath())).into(mHeader);
-            Picasso.with(activity).load(new File(university.getLogoPath())).into(mLogo);
+            Picasso.with(activity).load(university.getImagePath()).into(mHeader);
+            Picasso.with(activity).load(university.getLogoPath()).into(mLogo);
 
             hideProgress();
         }

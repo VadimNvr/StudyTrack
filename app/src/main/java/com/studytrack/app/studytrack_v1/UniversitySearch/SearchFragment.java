@@ -1,5 +1,6 @@
 package com.studytrack.app.studytrack_v1.UniversitySearch;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -25,15 +26,13 @@ import com.studytrack.app.studytrack_v1.myFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-import Entities.Region;
-import Entities.Town;
 import Entities.University;
+import Requests.FilterRequest;
+import Requests.Filters.Filter;
 import Requests.GetFavoriteRequest;
-import Requests.GetRegionsRequest;
-import Requests.GetTownsRequest;
-import Requests.GetUniversitiesRequest;
 import Requests.Request;
 
 /**
@@ -46,6 +45,8 @@ public class SearchFragment extends myFragment {
     protected Toolbar toolbar;
     protected ActionBar actionbar;
     protected ProgressView progress;
+
+    Filter filter = null;
 
     protected Fab fab;
     protected MaterialSheetFab materialSheetFab;
@@ -87,9 +88,12 @@ public class SearchFragment extends myFragment {
         initSheetFab();
         initRecycler();
         initProgress();
+        if(!isFavorite) {
+            this.filter = getFilter();
+        }
         loading = false;
         curOffset = 0; // TODO: 23.03.2016 Write it normal
-        new LoadDataTask(true, getTown(), 5, 0).execute();
+        new LoadDataTask(filter, 5, 0).execute();
 
     }
 
@@ -173,38 +177,21 @@ public class SearchFragment extends myFragment {
     }
 
     private void loadMoreData() {
-        Town town = getTown();
-        if (town.getCount() - curOffset <= 0) {
-                return;
-            }
-
-        new LoadDataTask(true, town, curCount, curOffset).execute();
+        new LoadDataTask(filter, curCount, curOffset).execute();
     }
 
     private void initProgress() {
         progress = (ProgressView) activity.findViewById(R.id.progress);
     }
 
-    // TODO: 22.03.2016 remove
-    private Town getTown() {
-        GetRegionsRequest regionsRequest = new GetRegionsRequest(activity);
-        regionsRequest.execute();
-        List<Region> regions = null;
-        try {
-            regions = regionsRequest.get();
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
+    private Filter getFilter() {
+        Filter filter = new Filter();
+        Set<String> town_names = activity.getPreferences(Context.MODE_PRIVATE).getStringSet("cities_filter", null);
+        if(town_names != null) {
+            List<String> towns = new ArrayList<>(town_names);
+            filter.addTownsFilter(towns);
         }
-
-        GetTownsRequest townsRequest = new GetTownsRequest(activity, regions.get(0));
-        townsRequest.execute();
-        List<Town> towns = null;
-        try {
-            towns = townsRequest.get();
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
-        return towns.get(0);
+        return filter;
     }
 
 
@@ -247,18 +234,17 @@ public class SearchFragment extends myFragment {
     private class LoadDataTask extends AsyncTask<Void, Void, Void> {
 
         ArrayList<University> listItems = new ArrayList<>();
-        boolean loadFavorite;
-        Town town;
         int count;
         int offset;
         Request<University> request;
         RecyclerAdapter recyclerAdapter;
+        Filter filter;
 
-        public LoadDataTask(boolean loadFavorite, Town town, int count, int offset) {
-            this.loadFavorite = loadFavorite;
-            this.town = town;
+        public LoadDataTask(Filter filter, int count, int offset) {
             this.count = count;
             this.offset = offset;
+            this.filter = filter;
+
         }
 
         @Override
@@ -266,7 +252,7 @@ public class SearchFragment extends myFragment {
             super.onPreExecute();
             progress.start();
             if(!isFavorite) {
-                this.request = new GetUniversitiesRequest(activity, town, offset, count);
+                this.request = new FilterRequest(activity, offset, count, filter);
             } else {
                 this.request = new GetFavoriteRequest(activity);
             }
@@ -318,7 +304,11 @@ public class SearchFragment extends myFragment {
                 university_recycler.setAdapter(recyclerAdapter);
             }
             else {
-                recyclerAdapter.notifyDataSetChanged();
+                try {
+                    recyclerAdapter.notifyDataSetChanged();
+                } catch (NullPointerException e) {
+
+                }
             }
 
             progress.stop();
