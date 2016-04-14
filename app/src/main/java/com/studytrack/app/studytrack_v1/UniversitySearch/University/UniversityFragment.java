@@ -206,8 +206,8 @@ public class UniversityFragment extends myFragment
 
             recycler.setLayoutManager(new LinearLayoutManager(activity));
             recycler.setAdapter(new RecyclerAdapter(university,activity));
-            Picasso.with(activity).load(university.getImagePath()).into(mHeader);
-            Picasso.with(activity).load(university.getLogoPath()).into(mLogo);
+            Picasso.with(activity).load(university.getImagePath()).fit().into(mHeader);
+            Picasso.with(activity).load(university.getLogoPath()).fit().into(mLogo);
 
             hideProgress();
         }
