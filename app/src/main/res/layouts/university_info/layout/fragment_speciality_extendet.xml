@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayoutTable">
+
+        <android.support.v7.widget.Toolbar
+         android:id="@+id/toolbar"
+         android:layout_width="match_parent"
+         android:layout_height="?attr/actionBarSize"
+         app:theme="@style/ThemeOverlay.AppCompat.Dark"
+         android:background="@color/colorPrimary">
+
+         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             >
+
+             <Space
+                 android:layout_width="32dp"
+                 android:layout_height="32dp"
+                 />
+
+             <com.devspark.robototextview.widget.RobotoTextView
+                 app:typeface="roboto_regular"
+                 android:id="@+id/main.textview.title"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:gravity="center_vertical"
+                 android:layout_marginLeft="11dp"
+                 android:ellipsize="marquee"
+                 android:marqueeRepeatLimit="marquee_forever"
+                 android:textColor="@android:color/white"
+                 android:textSize="18sp"
+                 android:singleLine="true"
+                 />
+
+         </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+
+
+    </LinearLayout>
+
+    <de.codecrafters.tableview.TableView
+        xmlns:table="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tableView"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        table:columnCount="3"
+        table:headerElevation="10"
+        table:headerColor="@color/primary"
+        android:visibility="visible" />
+</LinearLayout>

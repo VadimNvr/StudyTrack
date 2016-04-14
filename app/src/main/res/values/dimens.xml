@@ -1,0 +1,59 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">300dp</dimen>
+    <dimen name="toolbar_height">55dp</dimen>
+    <dimen name="pager_height">55dp</dimen>
+
+
+    <dimen name="drawer_face_height">150dp</dimen>
+    <dimen name="drawer_item_height">55dp</dimen>
+    <dimen name="drawer_item_pic_size">25dp</dimen>
+    <dimen name="drawer_item_text_size">15sp</dimen>
+
+    <dimen name="drawer_face_username_size">25dp</dimen>
+    <dimen name="toolbar_back_btn_size">32dp</dimen>
+
+    <dimen name="uni_list_item_height">120dp</dimen>
+    <dimen name="uni_list_item_image_size">70dp</dimen>
+
+    <dimen name="filter_expandable_group_height">60dp</dimen>
+    <dimen name="filter_expandable_item_height">50dp</dimen>
+    <dimen name="filter_expandable_view_height">300dp</dimen>
+
+    <!-- FAB -->
+    <dimen name="fab_spacing">20dp</dimen>
+    <dimen name="fab_elevation">1dp</dimen>
+    <dimen name="fab_hide_distance">100dp</dimen>
+
+    <!-- FAB Sheet -->
+    <dimen name="keyline_spacing">20dp</dimen>
+    <dimen name="sheet_width">210dp</dimen>
+    <dimen name="sheet_spacing">20dp</dimen>
+    <dimen name="sheet_item_spacing">@dimen/keyline_spacing</dimen>
+    <dimen name="sheet_item_image_spacing">24dp</dimen>
+    <dimen name="sheet_item_textsize">16sp</dimen>
+    <dimen name="fab_sheet_elevation">4dp</dimen>
+
+    <!-- University header -->
+    <dimen name="university_header_height">320dp</dimen>
+    <dimen name="university_logo_mini_width">35dp</dimen>
+    <dimen name="university_logo_big_width">100dp</dimen>
+    <dimen name="university_logo_spacing_normal">16dp</dimen>
+    <dimen name="university_logo_mini_padding">55dp</dimen>
+
+    <!-- University title -->
+    <dimen name="university_title_height">120dp</dimen>
+    <dimen name="university_title_icon_size">80dp</dimen>
+
+    <dimen name="barchart_height">90dp</dimen>
+
+    <!--University filter-->
+    <dimen name="university_filter_result_list_height">700dp</dimen>
+    <dimen name="university_filter_result_list_item_height">55dp</dimen>
+
+</resources>

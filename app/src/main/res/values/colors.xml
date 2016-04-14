@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="drawer_item_text_clr">#363636</color>
+    <color name="drawer_item_icon_clr">#828282</color>
+    <color name="drawer_background_clr">#ffffff</color>
+    <color name="drawer_divider_clr">#e6e6e6</color>
+    <color name="divider_clr">#d6dbdc</color>
+
+    <color name="backgroundColorPrimary">#ffffff</color>
+    <color name="backgroundColorDark">#000000</color>
+    <color name="textColorPrimaryDark">#555555</color>
+    <color name="textColorPrimaryLight">#ffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="gray">#d0d0d0</color>
+    <color name="colorPrimary">#2ea663</color>
+    <color name="colorPrimaryDark">@color/colorPrimary</color>
+    <color name="colorPrimaryLight">#01a500</color>
+    <color name="colorAccent">@color/colorPrimary</color>
+    <color name="drawer_face_clr">@color/colorAccent</color>
+    <color name="drawer_face_username_clr">#e8e8e8</color>
+    <color name="banana">#FFCC00</color>
+    <color name="banana_accent">#ffee55</color>
+    <color name="fab_color">@color/banana</color>
+
+    <color name="toolbar_text_clr">#ffffff</color>
+
+    <color name="pos_btn_clr">@color/colorPrimary</color>
+    <color name="neg_btn_clr">#f60067</color>
+
+    <color name="transparent_background">#2A000000</color>
+    <color name="transparent">#0000</color>
+
+    <array name="progress_colors_light">
+        <item>#FF03A9F4</item>
+        <item>#FFF2AF3A</item>
+    </array>
+
+</resources>

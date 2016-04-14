@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1"
+    android:visibility="visible">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/card_view_table"
+        app:cardElevation="4dp"
+        app:contentPadding="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_weight="67"
+        android:visibility="visible">
+
+    <de.codecrafters.tableview.TableView
+        xmlns:table="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tableView"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        table:columnCount="3"
+        table:headerElevation="10"
+        table:headerColor="@color/primary"
+        android:visibility="visible" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_marginTop="280dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Посмотреть все"
+        android:id="@+id/show_specialities_button"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="67"
+        android:background="@color/primary"
+        android:textColor="@color/md_white_1000"
+        />
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/earth_dark"
+            android:text="Перейти на сайт"
+            android:id="@+id/web_button"
+            android:gravity="center"
+            app:typeface="roboto_light"
+            android:layout_weight="1"
+            android:paddingTop="5dp"
+            android:textSize="12sp" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/map_marker_dark"
+            android:text="Показать на карте"
+            android:id="@+id/map_button"
+            android:gravity="center"
+            app:typeface="roboto_light"
+            android:layout_weight="1"
+            android:paddingTop="5dp"
+            android:textSize="12sp" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/star_unchecked_dark"
+            android:text="Избранное"
+            android:id="@+id/favourites_button"
+            android:gravity="center"
+            app:typeface="roboto_light"
+            android:layout_weight="1"
+            android:paddingTop="5dp"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="320dp"
+        android:layout_height="1sp"
+        android:id="@+id/divider"
+        android:background="@color/divider_clr"
+        android:layout_gravity="center_horizontal" />
+
+    <com.devspark.robototextview.widget.RobotoTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Средний балл"
+        android:gravity="center"
+        app:typeface="roboto_regular"
+        android:textSize="19sp"
+        android:layout_marginTop="20dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="88"
+            android:gravity="center"
+            app:typeface="roboto_regular"
+            android:textSize="22sp"
+            android:layout_weight="4"
+            android:id="@+id/average_score"
+            android:paddingLeft="10dp" />
+
+        <com.github.mikephil.charting.charts.HorizontalBarChart
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:id="@+id/scores_chart"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="320dp"
+        android:layout_height="1sp"
+        android:id="@+id/divider"
+        android:background="@color/divider_clr"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

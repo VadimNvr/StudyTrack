@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">studytrack_v1</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Titles -->
+    <string name="screen_unis_title">ВУЗы</string>
+    <string name="screen_olymps_title">Олимпиады</string>
+    <string name="screen_colledges_title">Колледжи</string>
+    <string name="screen_filters_title">Фильтры</string>
+
+    <string name="drawer_main_sec1_text">ВУЗы</string>
+    <string name="drawer_main_sec2_text">Колледжи</string>
+    <string name="drawer_main_sec3_text">Олимпиады</string>
+
+    <string name="drawer_extra_sec1_text">Избранное</string>
+
+    <string name="drawer_footer_sec1_text">Сообщить об ошибке</string>
+    <string name="drawer_footer_sec2_text">О приложении</string>
+    <!--        -->
+
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+    <string name="toolbar_filter">Фильтры</string>
+
+    <string name="filter">Фильтры</string>
+    <string name="sort">Сортировать</string>
+
+    <string name="univ_list_filename">ulist.dat</string>
+
+    <string name="title_activity_cities_search">CitySearchActivity</string>
+</resources>

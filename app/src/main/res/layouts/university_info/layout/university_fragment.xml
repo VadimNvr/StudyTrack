@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler"
+        android:visibility="visible" />
+
+    <android.support.v7.widget.Toolbar
+        android:id = "@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/transparent" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/university_title_height"
+        android:id="@+id/title"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="@dimen/university_title_icon_size"
+            android:layout_height="@dimen/university_title_icon_size"
+            android:id="@+id/icon"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Test Text"
+            android:id="@+id/name"
+            android:textSize="17sp"
+            android:textColor="@color/textColorPrimaryLight"
+            app:typeface="roboto_regular"
+            android:paddingRight="10dp"
+            android:gravity="center_vertical|left" />
+    </LinearLayout>
+
+</FrameLayout>

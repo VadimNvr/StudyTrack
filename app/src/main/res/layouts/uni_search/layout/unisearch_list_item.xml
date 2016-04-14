@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/backgroundColorPrimary">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|left"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:layout_width="@dimen/uni_list_item_image_size"
+            android:layout_height="@dimen/uni_list_item_image_size"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:id="@+id/logo"
+            android:src="@drawable/msu_logo" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Московский государственный университет им. М. В. Ломоносова"
+            android:id="@+id/name"
+            app:typeface="roboto_medium"
+            android:textSize="16sp"
+            android:paddingLeft="10dp"
+            android:textColor="@color/textColorPrimaryDark" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/linearLayout"
+            android:layout_weight="1.2"
+            android:gravity="center_horizontal" >
+
+            <com.devspark.robototextview.widget.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Город"
+                app:typeface="roboto_light"
+                android:id="@+id/location_title"
+                android:textSize="12sp" />
+
+            <com.devspark.robototextview.widget.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Москва"
+                android:id="@+id/location"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/textColorPrimaryDark"
+                android:textSize="15sp"
+                app:typeface="roboto_medium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/linearLayout2"
+            android:layout_weight="0.8"
+            android:gravity="center_horizontal" >
+
+            <com.devspark.robototextview.widget.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Стоимость обучения"
+                app:typeface="roboto_light"
+                android:id="@+id/cost_title"
+                android:textSize="12sp" />
+
+            <com.devspark.robototextview.widget.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="250 000 р."
+                android:id="@+id/cost"
+                android:layout_marginTop="3dp"
+                app:typeface="roboto_medium"
+                android:textColor="@color/textColorPrimaryDark"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/linearLayout3"
+            android:layout_weight="1"
+            android:gravity="center_horizontal" >
+
+            <com.devspark.robototextview.widget.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Средний балл"
+                app:typeface="roboto_light"
+                android:id="@+id/mark_title"
+                android:textSize="12sp" />
+
+            <com.devspark.robototextview.widget.RobotoTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="87"
+                android:id="@+id/mark"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/textColorPrimaryDark"
+                android:textSize="17sp"
+                app:typeface="roboto_medium" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1sp"
+        android:id="@+id/divider"
+        android:background="@color/divider_clr"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>
