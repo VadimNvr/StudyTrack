@@ -30,7 +30,7 @@ public class Town implements Entity {
         town.id = cursor.getInt(0);
 
         town.name = cursor.getString(2);
-        town.region = region;
+        town.region = null;
         town.count = cursor.getInt(3);
         return town;
     }
@@ -47,7 +47,7 @@ public class Town implements Entity {
     public static Town getByID(SQLiteDatabase db, int id) {
         Cursor cursor = db.rawQuery("Select * from Town Where id = ?", new String[]{Integer.toString(id)});
         cursor.moveToNext();
-        return Town.initFromCursor(cursor, Region.getByID(db,id));
+        return Town.initFromCursor(cursor, null);
     }
 
     @Override
@@ -55,6 +55,7 @@ public class Town implements Entity {
         Cursor cursor = db.rawQuery("Select * from Town Where name = ?", new String[]{name});
         if (cursor.moveToFirst()) {
             this.id = cursor.getInt(0);
+            int i =5;
         } else {
             ContentValues values = new ContentValues();
             values.put("name", name);

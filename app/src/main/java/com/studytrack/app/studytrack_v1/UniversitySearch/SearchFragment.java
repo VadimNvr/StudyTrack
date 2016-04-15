@@ -24,7 +24,9 @@ import com.studytrack.app.studytrack_v1.UniversitySearch.University.UniversityFr
 import com.studytrack.app.studytrack_v1.Utils.Animator;
 import com.studytrack.app.studytrack_v1.myFragment;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -56,7 +58,7 @@ public class SearchFragment extends myFragment {
     private int visibleThreshold = 5;
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
-
+    private boolean was_error;
 
     boolean isFavorite;
     int curCount = 10;
@@ -88,8 +90,16 @@ public class SearchFragment extends myFragment {
         initSheetFab();
         initRecycler();
         initProgress();
-        if(!isFavorite) {
-            this.filter = getFilter();
+        if(!isFavorite || was_error) {
+            try {
+                isFavorite = false;
+                this.filter = getFilter();
+                was_error = false;
+            }
+           catch (InvalidParameterException e) {
+                isFavorite = true;
+                was_error = true;
+           }
         }
         loading = false;
         curOffset = 0; // TODO: 23.03.2016 Write it normal
@@ -187,9 +197,20 @@ public class SearchFragment extends myFragment {
     private Filter getFilter() {
         Filter filter = new Filter();
         Set<String> town_names = activity.getPreferences(Context.MODE_PRIVATE).getStringSet("cities_filter", null);
+        Set<String> pointsSet = activity.getPreferences(Context.MODE_PRIVATE).getStringSet("points", null);
+        boolean flag = activity.getPreferences(Context.MODE_PRIVATE).getBoolean("flag", false);
         if(town_names != null) {
             List<String> towns = new ArrayList<>(town_names);
             filter.addTownsFilter(towns);
+        }
+        if(pointsSet != null && !pointsSet.isEmpty()) {
+            List<Integer> points = new ArrayList<>();
+            for (String s : pointsSet) {
+                Double value = Double.parseDouble(s);
+                points.add(value.intValue());
+            }
+            Collections.sort(points);
+            filter.addPointsFilter(points, flag);
         }
         return filter;
     }

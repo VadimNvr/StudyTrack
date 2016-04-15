@@ -36,7 +36,7 @@ public class University implements Entity {
     int loaded;
     List<Speciality> specialities;
     Activity activity;
-
+    String town_name;
 
     public University() {
     }
@@ -89,11 +89,12 @@ public class University implements Entity {
         Cursor cursor = db.rawQuery("Select * from University Where name = ?", new String[]{name});
         if (cursor.moveToFirst()) {
             this.id = cursor.getInt(0);
+            this.town.put(db);
         } else {
-
             ContentValues values = new ContentValues();
             values.put("name", name);
             values.put("address", address);
+            this.town.put(db);
             values.put("town_id", town.getId());
             values.put("phone", phone);
             values.put("site", site);
@@ -105,7 +106,8 @@ public class University implements Entity {
             values.put("image_path", imagePath);
             db.insert("University", null, values);
             cursor.close();
-            cursor = db.rawQuery("Select * from Town Where name =?", new String[]{name});
+
+            cursor = db.rawQuery("Select * from University Where name =?", new String[]{name});
             if (cursor.moveToFirst()) {
                 this.id = cursor.getInt(0);
             }
@@ -142,6 +144,8 @@ public class University implements Entity {
         return town;
     }
 
+
+
     public int getLiked() {
         return liked;
     }
@@ -152,6 +156,10 @@ public class University implements Entity {
 
         db.execSQL("Update University SET is_favourite = ? WHERE id = ?", new String[]{Integer.toString(this.liked),
                 Integer.toString(id)});
+        Cursor cursor = db.rawQuery("Select is_favourite From University Where id = ?", new String[] {Integer.toString(this.getId())});
+        cursor.moveToFirst();
+        int i = cursor.getInt(0);
+        int b = 5;
     }
 
     public String getLogoPath() {
@@ -256,5 +264,8 @@ public class University implements Entity {
         return name.hashCode();
     }
 
-
+    @Override
+    public String toString() {
+        return town.getName();
+    }
 }

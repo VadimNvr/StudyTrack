@@ -24,8 +24,8 @@ public class Filter {
         filterComponents.add(new SpecialityFilterComponent(specialityNames));
     }
 
-    public void addPointsFilter(List<Integer> points) {
-        filterComponents.add(new PointsFilterComponent(points));
+    public void addPointsFilter(List<Integer> points, boolean flag) {
+        filterComponents.add(new PointsFilterComponent(points, flag));
     }
 
     public String getSQL() {
@@ -60,6 +60,7 @@ public class Filter {
                 stringBuilder.append("&");
                 stringBuilder.append(filterComponent.getRequest());
             }
+            Log.i("Request", stringBuilder.toString());
             return stringBuilder.toString();
         }
         catch (Exception e) {

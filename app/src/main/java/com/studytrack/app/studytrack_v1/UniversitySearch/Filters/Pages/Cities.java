@@ -4,23 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.rey.material.app.BottomSheetDialog;
 import com.rey.material.widget.Button;
 import com.studytrack.app.studytrack_v1.FilterPageFragment;
 import com.studytrack.app.studytrack_v1.R;
 import com.studytrack.app.studytrack_v1.UniversitySearch.Filters.CitySearch.CitiesSearchActivity;
 import com.studytrack.app.studytrack_v1.UniversitySearch.Filters.CitySearch.ResultListAdapter;
 
-import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by vadim on 14.01.16.

@@ -4,7 +4,7 @@ import java.util.List;
 
 class PointsFilterComponent extends FilterComponent {
 
-    public PointsFilterComponent(List<Integer> params) {
+    public PointsFilterComponent(List<Integer> params, boolean flag) {
         super(params);
 
         SQLBuilder.append("university.mean_points >= ");
@@ -16,6 +16,6 @@ class PointsFilterComponent extends FilterComponent {
         RequestBuilder.append("&");
         RequestBuilder.append("max_points=");
         RequestBuilder.append(params.get(1).intValue());
-        RequestBuilder.append("&flag=False");
+        RequestBuilder.append("&flag=" + flag);
     }
 }

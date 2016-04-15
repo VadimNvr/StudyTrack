@@ -2,7 +2,6 @@ package com.studytrack.app.studytrack_v1.UniversitySearch.Filters.Adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.studytrack.app.studytrack_v1.FilterPageFragment;
@@ -59,10 +58,10 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
                 return "Города";
 
             case 1:
-                return "Специальности";
+                return "Баллы ЕГЭ и Цены";
 
             case 2:
-                return "Баллы ЕГЭ";
+                return "Специальности";
 
             case 3:
             default:

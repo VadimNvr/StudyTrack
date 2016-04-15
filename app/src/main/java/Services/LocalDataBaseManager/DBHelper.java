@@ -31,13 +31,6 @@ public class DBHelper extends SQLiteOpenHelper {
         createUniversityTable(db);
         createSpecialityTypeTable(db);
         createSpecialityTable(db);
-        try {
-            loadData();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public void loadData() throws ExecutionException, InterruptedException {
@@ -51,6 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SpecialityTypeRequest typeRequest = new SpecialityTypeRequest(context);
         typeRequest.execute();
         typeRequest.get(); // TODO: 06.04.2016 may be replace
+
     }
 
     private void createSpecialityTypeTable(SQLiteDatabase db) {

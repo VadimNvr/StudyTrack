@@ -24,9 +24,9 @@ public class StudyTrackApplication extends Application {
         super.onCreate();
 
         //deleteDatabase("mainDB");
-
+//        getSharedPreferences("cities_filter", Context.MODE_PRIVATE).edit().clear();
+//        getSharedPreferences("points", Context.MODE_PRIVATE).edit().clear();
         DBHelper dbHelper = new DBHelper(this);
-
         database = dbHelper.getWritableDatabase();
 
         try {

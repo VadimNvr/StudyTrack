@@ -43,8 +43,11 @@ public class FilterRequest extends Request<University> {
                     }
                 }
             }
-            saveToLocal(newUniversities);
+            for (University newUniversity : newUniversities) {
+                newUniversity.put(localDb.db);
+            }
         }
+        int i = 5;
         return result;
     }
 }

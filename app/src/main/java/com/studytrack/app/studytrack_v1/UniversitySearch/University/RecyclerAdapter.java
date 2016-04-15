@@ -77,6 +77,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                         }
                     }
+
                 });
 
                 if(data.getLiked() == 1) {

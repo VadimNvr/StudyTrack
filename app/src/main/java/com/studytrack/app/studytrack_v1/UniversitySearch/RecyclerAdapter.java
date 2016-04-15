@@ -73,8 +73,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void addItems(List<University> universities) {
         int start = this.universities.size();
         int count = universities.size();
+        for (University university : universities) {
+            if(!this.universities.contains(university)) {
+                this.universities.add(university);
+            }
+        }
 
-        this.universities.addAll(universities);
         //notifyDataSetChanged();
         //notifyItemRangeInserted(start, count);
     }
