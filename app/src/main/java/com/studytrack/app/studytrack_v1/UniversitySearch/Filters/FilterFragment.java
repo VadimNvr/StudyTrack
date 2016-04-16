@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.studytrack.app.studytrack_v1.MainActivity;
 import com.studytrack.app.studytrack_v1.UniversitySearch.Filters.Adapters.MainPagerAdapter;
 import com.studytrack.app.studytrack_v1.R;
+import com.studytrack.app.studytrack_v1.UniversitySearch.SearchFragment;
 import com.studytrack.app.studytrack_v1.myFragment;
 
 /**
@@ -67,7 +69,8 @@ public class FilterFragment extends myFragment {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 ((MainPagerAdapter) pager.getAdapter()).initAccept();
-                getActivity().onBackPressed();
+                ((MainActivity) getActivity()).setFragment(new SearchFragment());
+                //getActivity().onBackPressed();
                 return true;
             }
         });
@@ -75,6 +78,7 @@ public class FilterFragment extends myFragment {
 
     @Override
     public boolean onBackPressed() {
-        return false;
+        ((MainActivity) getActivity()).setFragment(new SearchFragment());
+        return true;
     }
 }
