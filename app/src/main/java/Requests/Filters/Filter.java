@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Filter {
     List<FilterComponent> filterComponents;
-    public boolean flag = true;
+
     public Filter() {
         filterComponents = new ArrayList<>();
     }
@@ -25,7 +25,6 @@ public class Filter {
     }
 
     public void addPointsFilter(List<Integer> points, boolean flag) {
-        this.flag = flag;
         filterComponents.add(new PointsFilterComponent(points, flag));
     }
 

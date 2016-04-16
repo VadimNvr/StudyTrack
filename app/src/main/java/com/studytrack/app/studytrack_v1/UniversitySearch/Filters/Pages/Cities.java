@@ -67,16 +67,5 @@ public class Cities extends FilterPageFragment {
         pref.edit()
             .putStringSet("cities_filter", chosenCities)
             .apply();
-        pref.edit()
-                .putStringSet("points", new HashSet<String>() {
-                    {
-                        add("1");
-                        add("100");
-                    }
-                })
-                .apply();
-        pref.edit()
-                .putBoolean("flag", true)
-                .apply();
     }
 }
