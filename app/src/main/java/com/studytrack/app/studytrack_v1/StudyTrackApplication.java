@@ -23,7 +23,7 @@ public class StudyTrackApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        //deleteDatabase("mainDB");
+        deleteDatabase("mainDB");
 //        getSharedPreferences("cities_filter", Context.MODE_PRIVATE).edit().clear();
 //        getSharedPreferences("points", Context.MODE_PRIVATE).edit().clear();
         DBHelper dbHelper = new DBHelper(this);

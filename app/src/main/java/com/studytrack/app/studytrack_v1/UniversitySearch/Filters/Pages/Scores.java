@@ -39,6 +39,10 @@ public class Scores extends FilterPageFragment {
         Set<String> point = getActivity().getPreferences(Context.MODE_PRIVATE).getStringSet("points", null);
         boolean flag = pref.getBoolean("flag", false);
         this.checkBox.setChecked(flag);
+        if(point.isEmpty()) {
+            point.add("0");
+            point.add("100");
+        }
         if(point != null && !point.isEmpty()) {
             List<Integer> points = new ArrayList<>();
             for (String s : point) {
@@ -60,14 +64,23 @@ public class Scores extends FilterPageFragment {
                 points.add(1, Double.toString(100.0 * i1 / 10));
             }
         });
+        if(points.isEmpty()) {
 
+            points.add(0,"0");
+            points.add(1,"100");
+        }
         return view;
     }
 
     @Override
     public void initAccept() {
         pref.edit()
-                .putStringSet("points", new HashSet<>(points)).putBoolean("flag", checkBox.isChecked())
+                .putStringSet("points", new HashSet<String>() {{
+                addAll(points);
+                }})
+                .apply();
+        pref.edit()
+                .putBoolean("flag", checkBox.isChecked())
                 .apply();
     }
 }

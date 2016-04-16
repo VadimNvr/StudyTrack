@@ -68,7 +68,8 @@
                 android:layout_marginTop="3dp"
                 android:textColor="@color/textColorPrimaryDark"
                 android:textSize="15sp"
-                app:typeface="roboto_medium" />
+                app:typeface="roboto_medium"
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
