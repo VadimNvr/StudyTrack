@@ -1,182 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:rsb="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColorPrimary">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:id="@+id/toolbar_space" />
 
     <RelativeLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="fill_horizontal|center"
+        android:layout_gravity="center_horizontal">
 
-
-        <CheckBox
+        <com.devspark.robototextview.widget.RobotoTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
-            android:id="@+id/checkBox2"
-            android:layout_alignParentBottom="true"
+            android:text="Балл ЕГЭ"
+            android:textColor="@color/textColorLightDark"
+            app:typeface="roboto_light"
+            android:textSize="18sp"
+            android:id="@+id/score_text"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="false"
+            android:layout_centerHorizontal="true" />
+
+        <com.appyvet.rangebar.RangeBar
+            xmlns:custom="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/scores_rangebar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            custom:tickStart="0"
+            custom:tickInterval="1"
+            custom:tickEnd="300"
+            custom:tickHeight="0dp"
+            custom:selectorSize="6dp"
+            custom:pinRadius="16dp"
+            custom:pinMaxFont="16sp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="54dp" />
+            android:layout_below="@+id/score_text" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/relativeLayout"
-            android:layout_above="@+id/relativeLayout2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="94dp">
+            android:text="0"
+            android:textColor="@color/textColorLightDark"
+            app:typeface="roboto_light"
+            android:textSize="16sp"
+            android:id="@+id/score_left_text"
+            android:layout_weight="1"
+            android:paddingLeft="8dp"
+            android:layout_alignLeft="@+id/scores_rangebar"
+            android:layout_below="@+id/scores_rangebar" />
 
-            <com.edmodo.rangebar.RangeBar
-                xmlns:custom="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/points_range_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                custom:tickCount="11"
-                android:layout_marginTop="58dp"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/textView1"
-                android:layout_marginRight="40dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="40dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="0"
-                android:id="@+id/textView1"
-                android:layout_marginLeft="13dp"
-                android:layout_alignTop="@+id/points_range_bar"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="13dp"
-                android:layout_marginTop="14dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="100"
-                android:id="@+id/textView3"
-                android:layout_alignTop="@+id/textView1"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginBottom="15dp"
-                android:layout_marginRight="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="0"
-                android:id="@+id/curentLeftValuePoints"
-                android:layout_above="@+id/textView1"
-                android:layout_toLeftOf="@+id/textView4"
-                android:layout_toStartOf="@+id/textView4" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="100"
-                android:id="@+id/curentRightValuePoints"
-                android:layout_marginRight="55dp"
-                android:layout_marginEnd="55dp"
-                android:layout_alignTop="@+id/curentLeftValuePoints"
-                android:layout_alignRight="@+id/points_range_bar"
-                android:layout_alignEnd="@+id/points_range_bar" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Проходные баллы"
-                android:id="@+id/textView4"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/relativeLayout2"
-            android:layout_marginBottom="28dp"
-            android:layout_above="@+id/checkBox2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:text="300"
+            android:textColor="@color/textColorLightDark"
+            app:typeface="roboto_light"
+            android:textSize="16sp"
+            android:id="@+id/score_right_text"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:layout_below="@+id/scores_rangebar"
+            android:layout_alignRight="@+id/scores_rangebar"
+            android:paddingRight="8dp" />
 
-            <com.edmodo.rangebar.RangeBar
-                xmlns:custom="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/price_range_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                custom:tickCount="11"
-                android:layout_marginTop="58dp"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/textView5"
-                android:layout_marginRight="40dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="40dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="0"
-                android:id="@+id/textView5"
-                android:layout_alignBottom="@+id/price_range_bar"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="100"
-                android:id="@+id/textView6"
-                android:layout_alignTop="@+id/textView5"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginBottom="15dp"
-                android:layout_marginRight="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="0"
-                android:id="@+id/curentLeftValuePrice"
-                android:layout_above="@+id/textView5"
-                android:layout_toLeftOf="@+id/textView6"
-                android:layout_toStartOf="@+id/textView6"
-                android:layout_marginRight="17dp"
-                android:layout_marginEnd="17dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="100"
-                android:id="@+id/curentRightValuePrice"
-                android:layout_alignTop="@+id/curentLeftValuePrice"
-                android:layout_toRightOf="@+id/textView6"
-                android:layout_toEndOf="@+id/textView6" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Стоимость обучения"
-                android:id="@+id/textView6"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
-        </RelativeLayout>
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/divider_clr" />
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="fill_horizontal|center"
+        android:layout_gravity="center_horizontal">
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Стоимость обучения"
+            android:textColor="@color/textColorLightDark"
+            app:typeface="roboto_light"
+            android:textSize="18sp"
+            android:id="@+id/price_text"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="false"
+            android:layout_centerHorizontal="true" />
+
+        <com.appyvet.rangebar.RangeBar
+            xmlns:custom="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/price_rangebar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            custom:tickStart="0"
+            custom:tickInterval="1"
+            custom:tickEnd="500"
+            custom:tickHeight="0dp"
+            custom:selectorSize="6dp"
+            custom:pinRadius="16dp"
+            custom:pinMaxFont="16sp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/price_text" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/textColorLightDark"
+            app:typeface="roboto_light"
+            android:textSize="16sp"
+            android:id="@+id/price_left_text"
+            android:layout_weight="1"
+            android:paddingLeft="8dp"
+            android:layout_below="@+id/price_rangebar"
+            android:layout_alignLeft="@+id/price_rangebar" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="300"
+            android:textColor="@color/textColorLightDark"
+            app:typeface="roboto_light"
+            android:textSize="16sp"
+            android:id="@+id/price_right_text"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:layout_below="@+id/price_rangebar"
+            android:layout_alignRight="@+id/price_rangebar"
+            android:paddingRight="8dp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="350dp"
+        android:layout_height="1sp"
+        android:background="@color/divider_clr" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/extra_space"
+        android:layout_weight="1.2" />
+
 </LinearLayout>

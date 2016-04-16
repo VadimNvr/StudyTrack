@@ -9,6 +9,7 @@
     <color name="backgroundColorPrimary">#ffffff</color>
     <color name="backgroundColorDark">#000000</color>
     <color name="textColorPrimaryDark">#555555</color>
+    <color name="textColorLightDark">#787878</color>
     <color name="textColorPrimaryLight">#ffffff</color>
     <color name="white">#ffffff</color>
     <color name="gray">#d0d0d0</color>
