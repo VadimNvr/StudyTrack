@@ -1,7 +1,6 @@
 package com.studytrack.app.studytrack_v1.UniversitySearch;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -56,13 +55,13 @@ public class SearchFragment extends myFragment {
     protected View[] sheetItems;
 
     protected RecyclerView university_recycler;
-    private int visibleThreshold = 10;
+    private int visibleThreshold = 5;
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
     private boolean was_error;
 
     boolean isFavorite;
-    int curCount = 20;
+    int curCount = 10;
     int curOffset = 0;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -104,7 +103,7 @@ public class SearchFragment extends myFragment {
         }
         loading = false;
         curOffset = 0; // TODO: 23.03.2016 Write it normal
-        new LoadDataTask(filter, 20, 0).execute();
+        new LoadDataTask(filter, 5, 0).execute();
 
     }
 
@@ -197,10 +196,9 @@ public class SearchFragment extends myFragment {
 
     private Filter getFilter() {
         Filter filter = new Filter();
-        SharedPreferences pref = activity.getPreferences(Context.MODE_PRIVATE);
-        Set<String> town_names = pref.getStringSet("cities_filter", null);
-        Set<String> pointsSet = pref.getStringSet("points", null);
-        boolean flag = pref.getBoolean("flag", true);
+        Set<String> town_names = activity.getPreferences(Context.MODE_PRIVATE).getStringSet("cities_filter", null);
+        Set<String> pointsSet = activity.getPreferences(Context.MODE_PRIVATE).getStringSet("points", null);
+        boolean flag = activity.getPreferences(Context.MODE_PRIVATE).getBoolean("flag", false);
         if(town_names != null) {
             List<String> towns = new ArrayList<>(town_names);
             filter.addTownsFilter(towns);

@@ -28,16 +28,7 @@ public class FilterRequest extends Request<University> {
     @Override
     protected List<University> doInBackground(Void... params) {
         List<University> result =  new ArrayList<>();
-        List<University> resultFromLocal = this.localDb.loadFilters(filter.getSQL(), count, offset);
-        if(!filter.flag) {
-            for (University university : resultFromLocal) {
-                if(university.getMeanPoints() > 1) {
-                    result.add(university);
-                }
-            }
-        } else {
-            result.addAll(resultFromLocal);
-        }
+        result.addAll(this.localDb.loadFilters(filter.getSQL(),count, offset));
         if(result.size()<count) {
             List<University> resultFromServer = new ArrayList<>();
             resultFromServer.addAll(this.db.loadFilters(filter.getRequest(), offset, count, activity));
@@ -45,16 +36,10 @@ public class FilterRequest extends Request<University> {
             for (University university : resultFromServer) {
                 if (result.size()<count) {
                     if(!result.contains(university)) {
-                        if(!filter.flag) {
-                            if(university.getMeanPoints() > 1) {
-                                    result.add(university);
-                            }
-
-                        } else {
-                            newUniversities.add(university);
-                            result.add(university);
-                        }
-
+                        newUniversities.add(university);
+                        result.add(university);
+                    } else {
+                        break;
                     }
                 }
             }
