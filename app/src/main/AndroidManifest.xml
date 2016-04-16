@@ -24,6 +24,10 @@
             android:name=".UniversitySearch.Filters.CitySearch.CitiesSearchActivity"
             android:label="@string/title_activity_cities_search" >
         </activity>
+        <activity
+            android:name=".UniversitySearch.Filters.SpecialitySearch.SpecialitiesSearchActivity"
+            android:label="@string/title_activity_specialities_search" >
+        </activity>
     </application>
 
 </manifest>

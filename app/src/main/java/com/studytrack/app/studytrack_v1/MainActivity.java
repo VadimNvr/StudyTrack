@@ -1,6 +1,7 @@
 package com.studytrack.app.studytrack_v1;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private Context ctx = this;
     private Toolbar toolbar;
     private Drawer drawer;
-    private myFragment curFrag;
+    private Fragment curFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,12 +157,19 @@ public class MainActivity extends AppCompatActivity {
             .commit();
     }
 
+    public void setFragment(Fragment frag) {
+        curFrag = frag;
+        fragmentManager.beginTransaction()
+                .replace(R.id.main_fragment, curFrag)
+                .commit();
+    }
+
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen()) {
             drawer.closeDrawer();
         }
-        else if (!curFrag.onBackPressed()) {
+        else if (!((myFragment) curFrag).onBackPressed()) {
             if (fragmentManager.getBackStackEntryCount() == 0)
                 drawer.openDrawer();
             else

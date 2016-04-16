@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.studytrack.app.studytrack_v1.R;
@@ -19,9 +17,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import Entities.Town;
-import Entities.University;
 import Requests.GetTownsWithSpecial;
-import Requests.GetUniversitiesRequest;
 
 /**
  * Created by vadim on 10.04.16.
@@ -60,7 +56,7 @@ public class SearchListAdapter extends BaseAdapter{
         // используем созданные, но не используемые view
         View view = convertView;
         if (view == null) {
-            view = lInflater.inflate(R.layout.filter_result_item, parent, false);
+            view = lInflater.inflate(R.layout.filter_city_result_item, parent, false);
         }
 
         String cityName = cities.get(position).getName();
