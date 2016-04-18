@@ -152,4 +152,15 @@ public class LocalDataBaseDriver {
         return specialities;
     }
 
+    public List<SpecialityType> loadSpecialityWithSpecifickName(String characters) {
+        ArrayList<SpecialityType> specialities = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM SpecialityType WHERE LOWER(name) LIKE LOWER(?);", new String[]{characters + '%'});
+        int i =0;
+        while (cursor.moveToNext() && i < 4) {
+            specialities.add(SpecialityType.initFromCursor(cursor));
+            i++;
+        }
+        cursor.close();
+        return specialities;
+    }
 }

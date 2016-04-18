@@ -13,6 +13,10 @@ import org.json.JSONObject;
 public class SpecialityType implements Entity {
     String name;
     int id;
+
+    public SpecialityType() {
+    }
+
     public SpecialityType(String name) {
         this.name = name;
     }
@@ -36,7 +40,9 @@ public class SpecialityType implements Entity {
     }
 
     public static SpecialityType initFromCursor(Cursor cursor) {
-        SpecialityType type = new SpecialityType(cursor.getString(0));
+        SpecialityType type = new SpecialityType();
+        type.name = cursor.getString(1);
+        type.id = cursor.getInt(0);
         return type;
     }
 

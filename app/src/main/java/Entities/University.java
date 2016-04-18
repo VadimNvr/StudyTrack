@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -20,7 +21,7 @@ import Requests.SpecialityRequest;
 /**
  * Created by yudzh_000 on 17.03.2016.
  */
-public class University implements Entity {
+public class University implements Entity, Serializable {
     int id;
 
     String name;
@@ -35,7 +36,7 @@ public class University implements Entity {
     String imagePath;
     int loaded;
     List<Speciality> specialities;
-    Activity activity;
+
     String town_name;
 
     public University() {
@@ -152,14 +153,11 @@ public class University implements Entity {
 
     public void inverseLiked(Activity activity) {
         liked = ++liked % 2;
-        SQLiteDatabase db = ((StudyTrackApplication) activity.getApplicationContext()).getDB();
 
+        SQLiteDatabase db = ((StudyTrackApplication) activity.getApplicationContext()).getDB();
+        this.put(db);
         db.execSQL("Update University SET is_favourite = ? WHERE id = ?", new String[]{Integer.toString(this.liked),
                 Integer.toString(id)});
-        Cursor cursor = db.rawQuery("Select is_favourite From University Where id = ?", new String[] {Integer.toString(this.getId())});
-        cursor.moveToFirst();
-        int i = cursor.getInt(0);
-        int b = 5;
     }
 
     public String getLogoPath() {
@@ -209,7 +207,6 @@ public class University implements Entity {
 
     public static University initFromJSON(JSONObject json, Town town, AppCompatActivity activity) throws JSONException, IOException {
         University university = new University();
-        university.activity = activity;
         university.town = town;
         university.name = json.getString("name");
         university.address = json.getString("address");

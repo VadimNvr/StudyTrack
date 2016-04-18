@@ -27,6 +27,12 @@ public class ResultListAdapter extends BaseAdapter {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+
+    public void deleteItem(String pos) {
+        chosenCities.remove(pos);
+        this.notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return chosenCities.size();

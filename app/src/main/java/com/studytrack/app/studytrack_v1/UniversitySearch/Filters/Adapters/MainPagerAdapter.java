@@ -8,13 +8,12 @@ import com.studytrack.app.studytrack_v1.FilterPageFragment;
 import com.studytrack.app.studytrack_v1.UniversitySearch.Filters.Pages.Cities;
 import com.studytrack.app.studytrack_v1.UniversitySearch.Filters.Pages.Scores;
 import com.studytrack.app.studytrack_v1.UniversitySearch.Filters.Pages.Specialities;
-import com.studytrack.app.studytrack_v1.UniversitySearch.Filters.Pages.Studies;
 
 /**
  * Created by vadim on 10.01.16.
  */
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
-    private final int PAGES_COUNT = 4;
+    private final int PAGES_COUNT = 3;
     protected FilterPageFragment pages[];
 
     public MainPagerAdapter(FragmentManager fm) {
@@ -22,8 +21,7 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
         pages = new FilterPageFragment[] {
                 new Cities(),
                 new Scores(),
-                new Specialities(),
-                new Studies()
+                new Specialities()
         };
     }
 
@@ -63,7 +61,6 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
             case 2:
                 return "Специальности";
 
-            case 3:
             default:
                 return "Обучение";
         }

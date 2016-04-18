@@ -29,7 +29,7 @@ public class SpecialityTableHeaderAdapter extends TableHeaderAdapter {
                 renderedView.setText("Название");
                 break;
             case 1:
-                renderedView.setText("Цена");
+                renderedView.setText("Форма");
                 break;
             case 2:
                 renderedView.setText("Баллы");

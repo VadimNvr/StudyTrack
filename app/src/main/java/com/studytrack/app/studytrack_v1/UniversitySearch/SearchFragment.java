@@ -1,6 +1,7 @@
 package com.studytrack.app.studytrack_v1.UniversitySearch;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -27,6 +28,7 @@ import com.studytrack.app.studytrack_v1.myFragment;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -55,13 +57,13 @@ public class SearchFragment extends myFragment {
     protected View[] sheetItems;
 
     protected RecyclerView university_recycler;
-    private int visibleThreshold = 5;
+    private int visibleThreshold = 10;
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
     private boolean was_error;
-
+    private boolean has_more_info;
     boolean isFavorite;
-    int curCount = 10;
+    int curCount = 20;
     int curOffset = 0;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -101,9 +103,10 @@ public class SearchFragment extends myFragment {
                 was_error = true;
            }
         }
+        has_more_info = true;
         loading = false;
         curOffset = 0; // TODO: 23.03.2016 Write it normal
-        new LoadDataTask(filter, 5, 0).execute();
+        new LoadDataTask(filter, 20, 0).execute();
 
     }
 
@@ -187,7 +190,9 @@ public class SearchFragment extends myFragment {
     }
 
     private void loadMoreData() {
-        new LoadDataTask(filter, curCount, curOffset).execute();
+        if (has_more_info) {
+            new LoadDataTask(filter, curCount, curOffset).execute();
+        }
     }
 
     private void initProgress() {
@@ -196,9 +201,11 @@ public class SearchFragment extends myFragment {
 
     private Filter getFilter() {
         Filter filter = new Filter();
-        Set<String> town_names = activity.getPreferences(Context.MODE_PRIVATE).getStringSet("cities_filter", null);
-        Set<String> pointsSet = activity.getPreferences(Context.MODE_PRIVATE).getStringSet("points", null);
-        boolean flag = activity.getPreferences(Context.MODE_PRIVATE).getBoolean("flag", false);
+        SharedPreferences pref = activity.getPreferences(Context.MODE_PRIVATE);
+        Set<String> town_names = pref.getStringSet("cities_filter", null);
+        Set<String> pointsSet = pref.getStringSet("points", null);
+        boolean flag = pref.getBoolean("flag", true);
+        Set<String> speciality = pref.getStringSet("specialities_filter", null);
         if(town_names != null) {
             List<String> towns = new ArrayList<>(town_names);
             filter.addTownsFilter(towns);
@@ -211,6 +218,10 @@ public class SearchFragment extends myFragment {
             }
             Collections.sort(points);
             filter.addPointsFilter(points, flag);
+        }
+        if(speciality != null && !speciality.isEmpty()) {
+            List<String> specialities = new ArrayList<>(speciality);
+            filter.addSpecialityFilter(specialities);
         }
         return filter;
     }
@@ -289,10 +300,16 @@ public class SearchFragment extends myFragment {
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
-                listItems.addAll(universities);
+                Set<University> uniqie = new HashSet<>(universities);
+                listItems.addAll(uniqie);
 
             if (recyclerAdapter != null) {
-                recyclerAdapter.addItems(universities);
+                int i1 = recyclerAdapter.getItemCount();
+                recyclerAdapter.addItems(new ArrayList<University>(uniqie));
+                int i2 = recyclerAdapter.getItemCount();
+                if(i1 == i2) {
+                    has_more_info = false;
+                }
             }
 
             return null;

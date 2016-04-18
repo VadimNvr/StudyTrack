@@ -17,7 +17,7 @@ public class Speciality implements  Entity {
     int points;
     String subjects;
     University university;
-
+    String qualification;
     public Speciality(){
 
     }
@@ -40,7 +40,8 @@ public class Speciality implements  Entity {
         });
         cursor1.moveToFirst();
         speciality.name = cursor1.getString(0);
-
+        cursor1.close();
+        speciality.qualification = cursor.getString(6);
         return speciality;
     }
 
@@ -50,6 +51,7 @@ public class Speciality implements  Entity {
         result.price = json.getInt("prise");
         result.points = json.getInt("scores");
         result.subjects = json.getString("subjects");
+        result.qualification = json.getString("qualification");
         result.university = university;
         return result;
     }
@@ -72,6 +74,7 @@ public class Speciality implements  Entity {
             values.put("type_id", nameID);
             values.put("price", price);
             values.put("points", points);
+            values.put("qualification", qualification);
             values.put("subjects", subjects);
             cursor.close();
             db.insert("Speciality", null, values);
@@ -98,5 +101,9 @@ public class Speciality implements  Entity {
 
     public String getSubjects() {
         return subjects;
+    }
+
+    public String getQualification() {
+        return qualification;
     }
 }

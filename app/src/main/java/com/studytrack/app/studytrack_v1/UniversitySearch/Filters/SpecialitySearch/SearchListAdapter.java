@@ -16,9 +16,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-import Entities.Speciality;
-import Entities.Town;
-import Requests.GetTownsWithSpecial;
+import Entities.SpecialityType;
+import Requests.GetSpecsWithSpecial;
 
 /**
  * Created by vadim on 16.04.16.
@@ -26,12 +25,12 @@ import Requests.GetTownsWithSpecial;
 public class SearchListAdapter extends BaseAdapter {
     AppCompatActivity ctx;
     LayoutInflater lInflater;
-    List<Town> specs; //TODO List<Speciality>
+    List<SpecialityType> specs; //TODO List<Speciality>
     Set<String> chosenSpecs;
 
     SearchListAdapter(AppCompatActivity ctx, Set<String> chosenSpecs) {
         this.ctx = ctx;
-        this.specs = new ArrayList<Town>(); //TODO Speciality
+        this.specs = new ArrayList<SpecialityType>(); //TODO Speciality
         this.chosenSpecs = chosenSpecs;
         lInflater = (LayoutInflater) ctx
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -77,9 +76,9 @@ public class SearchListAdapter extends BaseAdapter {
     }
 
     private class Filterer extends AsyncTask<Void, Void, Void> {
-        GetTownsWithSpecial request; //TODO GetSpecsWitSpecial
+        GetSpecsWithSpecial request; //TODO GetSpecsWitSpecial
         CharSequence constraint;
-        List<Town> results; //TODO Specialities
+        List<SpecialityType> results; //TODO Specialities
 
         Filterer(CharSequence constraint) {
             this.constraint = constraint;
@@ -88,7 +87,7 @@ public class SearchListAdapter extends BaseAdapter {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            request = new GetTownsWithSpecial(ctx, constraint.toString()); //TODO Specialities
+            request = new GetSpecsWithSpecial(ctx, constraint.toString()); //TODO Specialities
             request.execute();
         }
 
@@ -96,6 +95,8 @@ public class SearchListAdapter extends BaseAdapter {
         protected Void doInBackground(Void... params) {
             try {
                 results = request.get();
+                int i =5;
+                int b = 5;
             } catch (InterruptedException | ExecutionException e) {
                 results = null;
                 e.printStackTrace();

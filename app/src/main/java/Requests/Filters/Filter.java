@@ -11,21 +11,28 @@ import java.util.List;
  */
 public class Filter {
     List<FilterComponent> filterComponents;
-
+    public boolean flag = true;
+    public boolean hasSpeciality = false;
     public Filter() {
         filterComponents = new ArrayList<>();
     }
+    public List<String> townNames;
+    public List<Integer> points;
 
     public void addTownsFilter(List<String> townNames) {
         filterComponents.add(new TownFilterComponent(townNames));
+        this.townNames = townNames;
     }
 
     public void addSpecialityFilter(List<String> specialityNames) {
+        this.hasSpeciality = true;
         filterComponents.add(new SpecialityFilterComponent(specialityNames));
     }
 
     public void addPointsFilter(List<Integer> points, boolean flag) {
+        this.flag = flag;
         filterComponents.add(new PointsFilterComponent(points, flag));
+        this.points = points;
     }
 
     public String getSQL() {

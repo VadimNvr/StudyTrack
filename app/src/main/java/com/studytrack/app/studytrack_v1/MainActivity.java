@@ -1,11 +1,11 @@
 package com.studytrack.app.studytrack_v1;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
@@ -20,9 +20,8 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.squareup.picasso.Picasso;
-import com.studytrack.app.studytrack_v1.CollegesSearch.CollegesFragment;
-import com.studytrack.app.studytrack_v1.OlympsSearch.OlympsFragment;
 import com.studytrack.app.studytrack_v1.UniversitySearch.SearchFragment;
+import com.studytrack.app.studytrack_v1.UniversitySearch.SendErrorFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,14 +60,14 @@ public class MainActivity extends AppCompatActivity {
                 .withShowDrawerOnFirstLaunch(true)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName(R.string.drawer_main_sec1_text).withIcon(FontAwesome.Icon.faw_graduation_cap),
-                        new PrimaryDrawerItem().withName(R.string.drawer_main_sec2_text).withIcon(FontAwesome.Icon.faw_university),
-                        new PrimaryDrawerItem().withName(R.string.drawer_main_sec3_text).withIcon(FontAwesome.Icon.faw_pencil),
+//                        new PrimaryDrawerItem().withName(R.string.drawer_main_sec2_text).withIcon(FontAwesome.Icon.faw_university),
+//                        new PrimaryDrawerItem().withName(R.string.drawer_main_sec3_text).withIcon(FontAwesome.Icon.faw_pencil),
                         new DividerDrawerItem(),
-                        new PrimaryDrawerItem().withName(R.string.drawer_extra_sec1_text).withIcon(FontAwesome.Icon.faw_star).withSelectable(false)
+                        new PrimaryDrawerItem().withName(R.string.drawer_extra_sec1_text).withIcon(FontAwesome.Icon.faw_star).withSelectable(true)
                 )
                 .addStickyDrawerItems(
-                        new SecondaryDrawerItem().withName(R.string.drawer_footer_sec1_text).withSelectable(false),
-                        new SecondaryDrawerItem().withName(R.string.drawer_footer_sec2_text).withSelectable(false)
+                        new SecondaryDrawerItem().withName(R.string.drawer_footer_sec1_text).withSelectable(true),
+                        new SecondaryDrawerItem().withName(R.string.drawer_footer_sec2_text).withSelectable(true)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -79,20 +78,16 @@ public class MainActivity extends AppCompatActivity {
                                 curFrag = new SearchFragment();
                                 renderScreen();
                                 break;
-                            case 2:
-                                curFrag = new CollegesFragment();
-                                renderScreen();
-                                break;
                             case 3:
-                                curFrag = new OlympsFragment();
-                                renderScreen();
-                                break;
-                            case 5:
                                 curFrag = new SearchFragment(true);
                                 renderScreen();
                                 break;
+                            case -1:
+                                curFrag = new SendErrorFragment();
+                                renderScreen();
+                                break;
                             default:
-                                Toast.makeText(ctx, "Coming soon", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ctx, "Coming soon" + position, Toast.LENGTH_SHORT).show();
                                 return true;
                         }
                         drawer.closeDrawer();

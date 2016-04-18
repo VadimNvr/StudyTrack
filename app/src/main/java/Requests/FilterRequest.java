@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import Entities.University;
 import Requests.Filters.Filter;
@@ -27,27 +28,64 @@ public class FilterRequest extends Request<University> {
 
     @Override
     protected List<University> doInBackground(Void... params) {
-        List<University> result =  new ArrayList<>();
-        result.addAll(this.localDb.loadFilters(filter.getSQL(),count, offset));
-        if(result.size()<count) {
-            List<University> resultFromServer = new ArrayList<>();
-            resultFromServer.addAll(this.db.loadFilters(filter.getRequest(), offset, count, activity));
-            List<University> newUniversities = new ArrayList<>();
-            for (University university : resultFromServer) {
-                if (result.size()<count) {
-                    if(!result.contains(university)) {
-                        newUniversities.add(university);
+        try {
+            List<University> result = new ArrayList<>();
+            if(filter.flag) {
+                Filter newFilter = new Filter();
+                newFilter.addTownsFilter(filter.townNames);
+                newFilter.addPointsFilter(filter.points, filter.flag);
+                filter = newFilter;
+
+            }
+            List<University> resultFromLocal = this.localDb.loadFilters(filter.getSQL(), count, offset);
+            if (!filter.flag) {
+                for (University university : resultFromLocal) {
+                    if (university.getMeanPoints() > 1) {
                         result.add(university);
-                    } else {
-                        break;
+                    }
+                }
+            } else {
+                result.addAll(resultFromLocal);
+            }
+            if (result.size() < count) {
+                List<University> resultFromServer = new ArrayList<>();
+                resultFromServer.addAll(this.db.loadFilters(filter.getRequest(), offset, count, activity));
+                List<University> newUniversities = new ArrayList<>();
+                for (University university : resultFromServer) {
+                    if (result.size() < count) {
+                        if (!result.contains(university)) {
+                            if (!filter.flag) {
+                                if (university.getMeanPoints() > 1) {
+                                    result.add(university);
+                                }
+
+                            } else {
+                                newUniversities.add(university);
+                                result.add(university);
+                            }
+
+                        }
+                    }
+                }
+                for (University newUniversity : newUniversities) {
+                    newUniversity.put(localDb.db);
+                    if (filter.hasSpeciality) {
+                        try {
+                            newUniversity.loadSpecialities(activity);
+                        } catch (ExecutionException e) {
+
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
-            for (University newUniversity : newUniversities) {
-                newUniversity.put(localDb.db);
-            }
+
+            return result;
+        }catch (Exception e) {
+            return new ArrayList<>();
         }
-        int i = 5;
-        return result;
     }
+
 }

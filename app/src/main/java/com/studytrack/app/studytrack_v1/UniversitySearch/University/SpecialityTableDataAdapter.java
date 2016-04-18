@@ -87,4 +87,12 @@ public class SpecialityTableDataAdapter extends TableDataAdapter<Speciality> {
         textView.setGravity(Gravity.LEFT);
         return textView;
     }
+
+    private View renderForm(Speciality speciality) {
+        TextView textView = new TextView(getContext());
+        textView.setText(speciality.getQualification());
+        textView.setPadding(20, 10, 20, 10);
+        textView.setGravity(Gravity.CENTER);
+        return textView;
+    }
 }

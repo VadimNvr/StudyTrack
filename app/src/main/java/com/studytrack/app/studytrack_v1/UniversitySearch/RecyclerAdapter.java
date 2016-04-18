@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.studytrack.app.studytrack_v1.R;
 
@@ -48,11 +49,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int pos) {
         if (!isPositionHeader(pos)) {
             University uni = universities.get(pos - 1);
-            RecyclerItemViewHolder holder = (RecyclerItemViewHolder) viewHolder;
+            final RecyclerItemViewHolder holder = (RecyclerItemViewHolder) viewHolder;
             holder.name.setText(uni.getName());
             holder.location.setText(uni.getTown().getName());
             holder.average_mark.setText(uni.getViewableMark());
-            Picasso.with(context).load(uni.getLogoPath()).fit().into(holder.logo);
+            Picasso.with(context).load(uni.getLogoPath()).fit().into(holder.logo, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError() {
+                    Picasso.with(context).load("https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg")
+                            .fit().into(holder.logo);
+                }
+            });
             holder.cost.setText(uni.getViewableMeanPrice());
         }
     }

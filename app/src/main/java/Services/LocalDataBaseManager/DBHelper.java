@@ -77,6 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         "price integer," +
                         "points integer," +
                         "subjects Text," +
+                        "qualification Text," +
                         "FOREIGN KEY(university_id) REFERENCES University(id),"+
                         "FOREIGN KEY(type_id) REFERENCES SpecialityType(id)" +
                         ");");

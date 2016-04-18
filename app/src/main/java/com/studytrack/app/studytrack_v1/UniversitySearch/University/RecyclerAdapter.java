@@ -55,13 +55,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         switch (page) {
             case RecyclerHolder.OPTIONS:
                 final OptionsViewHolder options_holder = (OptionsViewHolder) viewHolder;
-                options_holder.web.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(data.getSite()));
-                        activity.startActivity(intent);
-                    }
-                });
+                if(!data.getSite().equals("null")) {
+                    options_holder.web.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            final Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(data.getSite()));
+                            activity.startActivity(intent);
+                        }
+                    });
+                }
 
                 options_holder.favourites.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -87,16 +89,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     Drawable img = activity.getApplicationContext().getResources().getDrawable(R.drawable.star_unchecked_dark);
                     options_holder.favourites.setCompoundDrawablesWithIntrinsicBounds(null,img,null,null);
                 }
-
-                options_holder.map.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + data.getAddress());
-                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                        mapIntent.setPackage("com.google.android.apps.maps");
-                        activity.startActivity(mapIntent);
-                    }
-                });
+                if(!data.getAddress().equals("null")) {
+                    options_holder.map.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + data.getAddress());
+                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                            mapIntent.setPackage("com.google.android.apps.maps");
+                            activity.startActivity(mapIntent);
+                        }
+                    });
+                }
                 break;
 
             case RecyclerHolder.SPECIALITIES:

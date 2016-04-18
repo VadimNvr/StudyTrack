@@ -1,16 +1,18 @@
 package com.studytrack.app.studytrack_v1.UniversitySearch.University.SpecialityExtendet;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.studytrack.app.studytrack_v1.myFragment;
 import com.studytrack.app.studytrack_v1.R;
 import com.studytrack.app.studytrack_v1.UniversitySearch.University.SpecialityTableDataAdapter;
 import com.studytrack.app.studytrack_v1.UniversitySearch.University.SpecialityTableHeaderAdapter;
+import com.studytrack.app.studytrack_v1.myFragment;
 
 import Entities.Speciality;
 import Entities.University;
@@ -69,7 +71,19 @@ public class SpecialityFragment extends myFragment {
 
     private void bindData() {
         tableView.setHeaderAdapter(new SpecialityTableHeaderAdapter(activity.getApplicationContext()));
-        tableView.setDataAdapter(new SpecialityTableDataAdapter(activity.getApplicationContext(),university.getSpecialities()));
+        tableView.setDataAdapter(new SpecialityTableDataAdapter(activity.getApplicationContext(), university.getSpecialities()));
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        int i =5;
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(getContext(), "landscape", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(getContext(), "portrait", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
